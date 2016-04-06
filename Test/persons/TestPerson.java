@@ -5,7 +5,6 @@
  */
 package persons;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -57,14 +56,19 @@ public class TestPerson {
     @Test
     public void TestGetAge() {
         GregorianCalendar date0 = new GregorianCalendar(1995, 10, 12);
+        GregorianCalendar date1 = new GregorianCalendar(1990, 10, 12);
         assertEquals(person.getAge(date0), 5);
+        assertEquals(person.getAge(date1), 0);
+        
     }
     
     @Test
     public void TestWasBorn() {
         GregorianCalendar date0 = new GregorianCalendar(1985, 10, 12);
         GregorianCalendar date1 = new GregorianCalendar(1995, 10, 12);
+        GregorianCalendar date2 = new GregorianCalendar(1990, 10, 12);
         assertEquals(person.wasBorn(date0),false);
         assertEquals(person.wasBorn(date1),true);
+        assertEquals(person.wasBorn(date2),true);
     }
 }
