@@ -22,7 +22,12 @@ public class OutilsPerson {
         Iterator<IPerson> listIter = lp.iterator();
 		while (listIter.hasNext()) {
 			IPerson pers=listIter.next();
+                        try {
                         max=Math.max(max, pers.getAge(date));
+                        }
+                        catch (Exception e ) {
+                            
+                        }
 		}
         return max;
     }
