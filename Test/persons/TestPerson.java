@@ -20,7 +20,7 @@ import org.junit.Test;
  */
 public class TestPerson {
 
-    Person person;
+    protected Person person;
 
     public TestPerson() {
     }
