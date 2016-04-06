@@ -57,14 +57,18 @@ public abstract class TestIPerson {
     public void TestGetAge() {
         GregorianCalendar date0 = new GregorianCalendar(1995, 10, 12);
         assertEquals(iperson.getAge(date0), 5);
+        GregorianCalendar date1 = new GregorianCalendar(1990, 10, 12);
+        assertEquals(iperson.getAge(date1), 0);
     }
     
     @Test
     public void TestWasBorn() {
         GregorianCalendar date0 = new GregorianCalendar(1985, 10, 12);
         GregorianCalendar date1 = new GregorianCalendar(1995, 10, 12);
+        GregorianCalendar date2 = new GregorianCalendar(1990, 10, 12);
         assertEquals(iperson.wasBorn(date0),false);
         assertEquals(iperson.wasBorn(date1),true);
+        assertEquals(iperson.wasBorn(date2),true);
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
