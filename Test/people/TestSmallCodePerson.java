@@ -38,9 +38,5 @@ public class TestSmallCodePerson extends TestIPerson{
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    // ERREUR : probleme sur le calcul de l'age (né un ans après)
 }

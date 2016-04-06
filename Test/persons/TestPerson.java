@@ -12,14 +12,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import people.TestIPerson;
 
 /**
  *
  * @author Thibaud
  */
-public class TestPerson {
+public class TestPerson extends TestIPerson{
 
-    protected Person person;
 
     public TestPerson() {
     }
@@ -35,40 +35,12 @@ public class TestPerson {
 
     @Before
     public void setUp() {
-        person = new Person("toto", "tutu", 1990, 10, 12);
+        iperson = new Person("toto", "tutu", 1990, 10, 12);
     }
 
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-    @Test(expected = IllegalArgumentException.class)
-    public void TestGetAgeFuture() {
-        GregorianCalendar date0 = new GregorianCalendar(1985, 10, 12);
-        person.getAge(date0);
-    }
-
-    @Test
-    public void TestGetAge() {
-        GregorianCalendar date0 = new GregorianCalendar(1995, 10, 12);
-        GregorianCalendar date1 = new GregorianCalendar(1990, 10, 12);
-        assertEquals(person.getAge(date0), 5);
-        assertEquals(person.getAge(date1), 0);
-        
-    }
     
-    @Test
-    public void TestWasBorn() {
-        GregorianCalendar date0 = new GregorianCalendar(1985, 10, 12);
-        GregorianCalendar date1 = new GregorianCalendar(1995, 10, 12);
-        GregorianCalendar date2 = new GregorianCalendar(1990, 10, 12);
-        assertEquals(person.wasBorn(date0),false);
-        assertEquals(person.wasBorn(date1),true);
-        assertEquals(person.wasBorn(date2),true);
-    }
 }

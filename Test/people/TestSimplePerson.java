@@ -38,9 +38,6 @@ public class TestSimplePerson extends TestIPerson {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    // ERREURS: 
+        //- getAge() quand la personne n'est pas née retourne un nombre négatif, alors qu'il devrait retourner une exception
 }
