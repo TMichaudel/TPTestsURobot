@@ -77,25 +77,46 @@ public class TestOutilsPerson {
     }
 
     @Test
-    public void testInterval() {
+    public void testIntervalOK() {
         IPerson mockPersonTropJeune = mock(IPerson.class);
         Mockito.when(mockPersonTropJeune.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(25);
         IPerson mockPerson35 = mock(IPerson.class);
         Mockito.when(mockPerson35.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(35);
         IPerson mockPerson30 = mock(IPerson.class);
-        Mockito.when(mockPerson30.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(30);
-        IPerson mockPersonPasNee = mock(IPerson.class);
-        Mockito.when(mockPersonPasNee.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(30);
+        Mockito.when(mockPerson30.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(30); 
         IPerson mockPersonTropVieille = mock(IPerson.class);
         Mockito.when(mockPersonTropVieille.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(50);
         List<IPerson> personnes = new ArrayList<>();
         personnes.add(mockPersonTropJeune);
         personnes.add(mockPerson35);
         personnes.add(mockPerson30);
+        personnes.add(mockPersonTropVieille);
         List<IPerson> result = OutilsPerson.getPeopleInterval(personnes, new GregorianCalendar(1985, 10, 11), 30, 35);
         assertEquals(result.size(), 2);
         assertEquals(result.get(0).getAge(new GregorianCalendar(1985, 10, 11)), 35);
         assertEquals(result.get(1).getAge(new GregorianCalendar(1985, 10, 11)), 30);
+    }
+    
+    @Test
+    public void testIntervalListVide(){
+        List<IPerson> personnes = new ArrayList<>();
+        List<IPerson> result = OutilsPerson.getPeopleInterval(personnes, new GregorianCalendar(1985, 10, 11), 30, 35);
+        assertEquals(result.size(), 0);
+    }
+    
+    @Test
+    public void testIntervalUnborn(){
+        IPerson mockPersonPasNee = mock(IPerson.class);
+        Mockito.doThrow(new IllegalArgumentException()).when(mockPersonPasNee).getAge(new GregorianCalendar(1985, 10, 11));
+        IPerson mockPerson32 = mock(IPerson.class);
+        Mockito.when(mockPerson32.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(32);
+        List<IPerson> personnes = new ArrayList<>();
+        personnes.add(mockPerson32);
+        personnes.add(mockPersonPasNee);
+        List<IPerson> result = OutilsPerson.getPeopleInterval(personnes, new GregorianCalendar(1985, 10, 11), 30, 35);
+        assertEquals(result.size(), 1);
+        assertEquals(result.get(0).getAge(new GregorianCalendar(1985, 10, 11)), 32);
+        
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

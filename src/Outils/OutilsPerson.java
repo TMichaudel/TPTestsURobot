@@ -33,12 +33,16 @@ public class OutilsPerson {
 
     public static List<IPerson> getPeopleInterval(List<IPerson> people, GregorianCalendar date, int ageMin, int ageMax) {
         List<IPerson> validPeople = new ArrayList<>();
-        for (IPerson person : people) {
-            int age = person.getAge(date);
-            if (age >= ageMin && age <= ageMax) {
-                validPeople.add(person);
+        people.stream().forEach((person) -> {
+            try {
+                int age = person.getAge(date);
+                if (age >= ageMin && age <= ageMax) {
+                    validPeople.add(person);
+                }
+            } catch (Exception ex) {
+
             }
-        }
+        });
         return validPeople;
     }
 }
