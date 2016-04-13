@@ -29,9 +29,23 @@ public class BatteryUnitTest {
     }
     
     @Test
-    public void testTimeSufficient(){
+    public void testTimeSufficientExactly(){
         Battery cell = new Battery();
         long time = cell.timeToSufficientCharge(111.0);
         assertEquals(time, 1000);
+    }
+    
+    @Test
+    public void testTimeSufficientRounded(){
+        Battery cell = new Battery();
+        long time = cell.timeToSufficientCharge(125.2);
+        assertEquals(time, 3000);
+    }
+    
+    @Test
+    public void testTimeSufficientNegative(){
+        Battery cell = new Battery();
+        long time = cell.timeToSufficientCharge(-125.2);
+        assertEquals(time, 0);
     }
 }
