@@ -61,8 +61,18 @@ public class TestOutilsPerson {
     }
     
     @Test
-    public void testSearchOldestVide() {
+    public void testSearchOldestEmpty() {
         List<IPerson> lp = new ArrayList();
+        int i = OutilsPerson.searchOldest(lp, null);
+        assertEquals(i, 0);
+    }
+    
+    @Test
+    public void testSearchOldestUnborn() {
+        IPerson mockPerson0 = mock(IPerson.class);
+        doThrow(new Exception()).when(mockPerson0.getAge(any(GregorianCalendar.class)));
+        List<IPerson> lp = new ArrayList();
+        lp.add(mockPerson0);
         int i = OutilsPerson.searchOldest(lp, null);
         assertEquals(i, 0);
     }
