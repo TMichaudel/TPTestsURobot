@@ -69,7 +69,7 @@ public class TestOutilsPerson {
     @Test
     public void testSearchOldestUnborn() {
         IPerson mockPerson0 = mock(IPerson.class);
-        doThrow(new Exception()).when(mockPerson0.getAge(any(GregorianCalendar.class)));
+        doThrow(new IllegalArgumentException()).when(mockPerson0).getAge(any(GregorianCalendar.class));
         List<IPerson> lp = new ArrayList();
         lp.add(mockPerson0);
         int i = OutilsPerson.searchOldest(lp, null);
