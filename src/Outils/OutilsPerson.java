@@ -17,7 +17,7 @@ import persons.IPerson;
  */
 public class OutilsPerson {
     
-    public int searchOldest(List<IPerson> lp, GregorianCalendar date) {
+    public static int searchOldest(List<IPerson> lp, GregorianCalendar date) {
         int max=0;
         Iterator<IPerson> listIter = lp.iterator();
 		while (listIter.hasNext()) {
