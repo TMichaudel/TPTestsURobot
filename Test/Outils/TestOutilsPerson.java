@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Outils;
 
 import java.util.ArrayList;
@@ -24,26 +23,26 @@ import persons.IPerson;
  * @author Thibaud
  */
 public class TestOutilsPerson {
-    
+
     public TestOutilsPerson() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-    
+
     @Test
     public void testSearchOldestOk() {
         IPerson mockPerson0 = mock(IPerson.class);
@@ -59,14 +58,14 @@ public class TestOutilsPerson {
         int i = OutilsPerson.searchOldest(lp, null);
         assertEquals(i, 35);
     }
-    
+
     @Test
     public void testSearchOldestEmpty() {
         List<IPerson> lp = new ArrayList();
         int i = OutilsPerson.searchOldest(lp, null);
         assertEquals(i, 0);
     }
-    
+
     @Test
     public void testSearchOldestUnborn() {
         IPerson mockPerson0 = mock(IPerson.class);
@@ -75,6 +74,28 @@ public class TestOutilsPerson {
         lp.add(mockPerson0);
         int i = OutilsPerson.searchOldest(lp, null);
         assertEquals(i, 0);
+    }
+
+    @Test
+    public void testInterval() {
+        IPerson mockPersonTropJeune = mock(IPerson.class);
+        Mockito.when(mockPersonTropJeune.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(25);
+        IPerson mockPerson35 = mock(IPerson.class);
+        Mockito.when(mockPerson35.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(35);
+        IPerson mockPerson30 = mock(IPerson.class);
+        Mockito.when(mockPerson30.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(30);
+        IPerson mockPersonPasNee = mock(IPerson.class);
+        Mockito.when(mockPersonPasNee.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(30);
+        IPerson mockPersonTropVieille = mock(IPerson.class);
+        Mockito.when(mockPersonTropVieille.getAge(new GregorianCalendar(1985, 10, 11))).thenReturn(50);
+        List<IPerson> personnes = new ArrayList<>();
+        personnes.add(mockPersonTropJeune);
+        personnes.add(mockPerson35);
+        personnes.add(mockPerson30);
+        List<IPerson> result = OutilsPerson.getPeopleInterval(personnes, new GregorianCalendar(1985, 10, 11), 30, 35);
+        assertEquals(result.size(), 2);
+        assertEquals(result.get(0).getAge(new GregorianCalendar(1985, 10, 11)), 35);
+        assertEquals(result.get(1).getAge(new GregorianCalendar(1985, 10, 11)), 30);
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
