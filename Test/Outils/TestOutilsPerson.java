@@ -76,6 +76,18 @@ public class TestOutilsPerson {
         int i = OutilsPerson.searchOldest(lp, null);
         assertEquals(i, 0);
     }
+    
+    @Test
+    public void testSearchOldestCalls() {
+        IPerson mockPerson0 = mock(IPerson.class);
+        Mockito.when(mockPerson0.getAge(any(GregorianCalendar.class))).thenReturn(25);
+        List<IPerson> lp = new ArrayList();
+        lp.add(mockPerson0);
+        int i = OutilsPerson.searchOldest(lp, null);
+        verify(mockPerson0, never()).getFirstName();
+        verify(mockPerson0, never()).getName();
+        verify(mockPerson0, atLeastOnce()).getAge(any(GregorianCalendar.class));
+    }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
